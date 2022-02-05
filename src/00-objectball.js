@@ -116,20 +116,18 @@ function gameObject(){
     
 }
 
+
 function numPointsScored(player){
-    // access the gameObject function 
+    // access the gameObject 
     let game = gameObject;
-    debugger;
-    // access either the home team or away team
-    for (let team in game){
+    // enter one level below
+    for (let gameKey in game){
         debugger;
-        let playersKey = team.players
-        debugger;
-        // access the players object
-        for (let player in playersKey){
-            // return the points for that player
+        // enter another level below, to the players object
+        let playersObj = game[gameKey]["players"]
+        for (player in playersObj){
             debugger;
-            return player.points;
-        }
+            return player.points
         }
     }
+}
