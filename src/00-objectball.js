@@ -120,14 +120,16 @@ function gameObject(){
 function numPointsScored(player){
     // access the gameObject 
     let game = gameObject;
-    // enter one level below
-    for (let gameKey in game){
-        debugger;
-        // enter another level below, to the players object
-        let playersObj = game[gameKey]["players"]
-        for (player in playersObj){
-            debugger;
-            return player.points
+    for (let gameKey in game){ // enter one level below
+        let playersObj = game[gameKey]["players"] // enter another level below, to the players object
+        for (let thisPlayer in playersObj){
+            if (thisPlayer === player){
+                return player.points
+            }
+            
         }
     }
 }
+
+numPointsScored(player="Alan Anderson")
+numPointsScored()
