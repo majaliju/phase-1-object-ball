@@ -118,18 +118,43 @@ function gameObject(){
 
 
 function numPointsScored(player){
-    // access the gameObject 
-    let game = gameObject;
+    let game = gameObject();  // access the gameObject 
     for (let gameKey in game){ // enter one level below
         let playersObj = game[gameKey]["players"] // enter another level below, to the players object
-        for (let thisPlayer in playersObj){
-            if (thisPlayer === player){
-                return player.points
+        for (let thisPlayer in playersObj){ 
+            if (thisPlayer === player){ // checks if player-input matches the given player
+                return playersObj[player].points
             }
             
         }
     }
 }
 
-numPointsScored(player="Alan Anderson")
-numPointsScored()
+function shoeSize(player){
+    let game = gameObject();  // access the gameObject 
+    for (let gameKey in game){ // enter one level below
+        let playersObj = game[gameKey]["players"] // enter another level below, to the players object
+        for (let thisPlayer in playersObj){ 
+            if (thisPlayer === player){ // checks if player-input matches the given player
+                return playersObj[player].shoe
+            }
+            
+        }
+    }
+}
+
+function teamColors(team){
+    let game = gameObject(); // access the gameObject
+    for (let gameKey in game){ // gameKey equals either home or away
+        let teamObj = game[gameKey]  // teamObj holds {teamName, colors, players}
+        for (let thisTeam in teamObj){ // thisTeam cycles thru teamName, colors, players
+            debugger; // issue here is that teamName just cycles thru these, but then doesn't return anything
+            if (thisTeam === team){ 
+                return teamObj.colors
+            }
+        }
+}
+}
+
+teamColors("Brooklyn Nets")
+teamColors("Charlotte Hornets")
