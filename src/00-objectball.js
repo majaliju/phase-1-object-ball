@@ -25,7 +25,7 @@ function gameObject(){
                     slamDunks: 7
                 },
                 "Brook Lopez": {
-                    number:11,
+                    number: 11,
                     shoe: 17,
                     points: 17,
                     rebounds: 19,
@@ -58,7 +58,7 @@ function gameObject(){
         },
         away: {
             teamName: "Charlotte Hornets",
-            colors: ["turqoise", "purple"],
+            colors: ["turquoise", "purple"],
             players: {
                 "Jeff Adrien": {
                     number: 4,
@@ -118,10 +118,10 @@ function gameObject(){
 
 
 function numPointsScored(player){
-    let game = gameObject();  // access the gameObject 
-    for (let gameKey in game){ // enter one level below
-        let playersObj = game[gameKey]["players"] // enter another level below, to the players object
-        for (let thisPlayer in playersObj){ 
+    const game = gameObject();  // access the gameObject 
+    for (const gameKey in game){ // enter one level below
+        const playersObj = game[gameKey]["players"] // enter another level below, to the players object
+        for (const thisPlayer in playersObj){ 
             if (thisPlayer === player){ // checks if player-input matches the given player
                 return playersObj[player].points
             }
@@ -131,10 +131,10 @@ function numPointsScored(player){
 }
 
 function shoeSize(player){
-    let game = gameObject();  // access the gameObject 
-    for (let gameKey in game){ // enter one level below
-        let playersObj = game[gameKey]["players"] // enter another level below, to the players object
-        for (let thisPlayer in playersObj){ 
+    const game = gameObject();  // access the gameObject 
+    for (const gameKey in game){ // enter one level below
+        const playersObj = game[gameKey]["players"] // enter another level below, to the players object
+        for (const thisPlayer in playersObj){ 
             if (thisPlayer === player){ // checks if player-input matches the given player
                 return playersObj[player].shoe
             }
@@ -143,18 +143,118 @@ function shoeSize(player){
     }
 }
 
-function teamColors(team){
-    let game = gameObject(); // access the gameObject
-    for (let gameKey in game){ // gameKey equals either home or away
-        let teamObj = game[gameKey]  // teamObj holds {teamName, colors, players}
-        for (let thisTeam in teamObj){ // thisTeam cycles thru teamName, colors, players
-            debugger; // issue here is that teamName just cycles thru these, but then doesn't return anything
-            if (thisTeam === team){ 
-                return teamObj.colors
+
+function teamColors(name){
+    const game = gameObject(); // access the gameObject
+    for (const gameKey in game){ // gameKey equals either home or away
+        debugger;
+        const teamObj = game[gameKey]  // teamObj holds {teamName, colors, players}
+        for (const thisTeam in teamObj){ // thisTeam cycles thru teamName, colors, players
+            debugger;
+            if (teamObj["teamName"] === name){
+                return teamObj["colors"]
+            }
+            else {
+                continue
             }
         }
-}
+        }
+    }
+
+function teamNames(){
+    const game = gameObject(); // access the gameObject
+    const teamNameArray = [];
+    for (const gameKey in game){
+        teamNameArray.push(game[gameKey]["teamName"])
+    }
+    return teamNameArray;
 }
 
-teamColors("Brooklyn Nets")
-teamColors("Charlotte Hornets")
+function playerNumbers(teamName){
+    const game = gameObject(); // access the gameObject
+    const jerseyArray = []; 
+    debugger;
+
+    for (const gameKey in game){ // enter the 'home' and 'array' object
+        debugger;
+        const teamNameObj = game[gameKey]["teamName"]
+        const playersObj = game[gameKey]["players"]
+        debugger;
+        if (teamName === teamNameObj){ // if teamName matches the teamName in our game object
+            for (const player in playersObj){
+                console.log([`${player}`])
+                // issue is here with undefined being pushed into jerseyArray
+                jerseyArray.push([`${player}`]["number"]) // [player][number] is undefined 
+                debugger;
+            }
+            }
+            // jerseyArray.push(playersObj["number"]) // push that player's jersey number 
+            debugger;
+        }
+}
+
+playerNumbers("Brooklyn Nets")
+playerNumbers("Charlotte Hornets")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function teamColors(name){
+    let game = gameObject(); // access the gameObject
+    for (let gameKey in game){ // gameKey equals either home or away
+        debugger;
+        let teamObj = game[gameKey]  // teamObj holds {teamName, colors, players}
+        for (let thisTeam in teamObj){ // thisTeam cycles thru teamName, colors, players
+            debugger;
+            if (teamObj["teamName"] === name){
+                return teamObj["colors"]
+            }
+            else {
+                return ""
+            }
+        }
+        
+}
+}*/
